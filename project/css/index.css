@@ -1,0 +1,46 @@
+#block-screen {
+    margin: 3% 10%;
+}
+
+.block-checkbox{
+    padding-left: 20px;
+}
+
+#block-canvas {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#block-console {
+    width: 100%;
+    height: 33%;
+
+}
+
+#block-controls {
+    text-align: center;
+    padding: 10px;
+}
+
+#console{
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    overflow-y: scroll;
+}
+
+#block-algorithms {
+    border: 1px solid #b9b9b9;
+    padding: 10px;
+    background-color: white;
+}
+
+#block-status {
+    padding: 10px;
+    background-color: #f7f7f7;
+    border: 1px solid silver;
+}
+
+

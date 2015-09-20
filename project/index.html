@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>Graphic algorithms</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+<div id="block-screen" class="row">
+    <div id="block-canvas" class="col-lg-8">
+        <canvas id="pixel-grid" width="802" height="802"></canvas>
+    </div>
+    <div id="block-status" class="col-lg-4">
+
+        <div id="block-algorithms">
+            <div>
+                <div><h4>Отрезок</h4></div>
+                <div class="block-checkbox"><label><input id="DDA" class="algorithm-box" type="checkbox"> Алгоритм
+                    DDA-линии </label></div>
+                <div class="block-checkbox"><label><input id="Brez" class="algorithm-box" type="checkbox"> Алгоритм
+                    Брезенхэма</label></div>
+                <div class="block-checkbox"><label><input id="Vu" class="algorithm-box" type="checkbox"> Алгоритм
+                    Ву</label></div>
+            </div>
+            <div>
+                <div><h4>Парабола</h4></div>
+                <div class="block-checkbox"><label><input id="parabola" class="algorithm-box" type="checkbox"> Парабола</label></div>
+            </div>
+
+        </div>
+
+        <div id="block-controls">
+            <button id="next-step" type="button" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-triangle-right"></span>
+            </button>
+        </div>
+
+        <div id="block-console">
+            <textarea id="console" readonly="readonly"></textarea>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/controller.js"></script>
+</body>
+</html>

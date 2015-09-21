@@ -9,7 +9,7 @@ $(document).on("ready", function () {
     $("#DDA").click(acceptDDAAlgorithm);
     makeGrid();
 
-    function makeGrid(canvas) {
+    function makeGrid() {
         for (var i = 1; i < size; i += pixelSize) {
             drawLine({x: i, y: 0}, {x: i, y: size});
             drawLine({x: 0, y: i}, {x: size, y: i});
@@ -79,7 +79,7 @@ $(document).on("ready", function () {
 
 
         function algorithmDDA(p1, p2) {
-            console = $("#console");
+            var console = $("#console");
             var iterationNumber = Math.max(Math.abs(p1.x - p2.x), Math.abs(p1.y - p2.y));
             var step = 0;
             var dX = (p2.x - p1.x) / iterationNumber;

@@ -95,6 +95,12 @@ function addEventListenersToButtons() {
         templateLineDrawingAlgorithm(algorithmCircle);
         disableButtons(this);
     });
+    $("#Ellipse").click(function () {
+        templateLineDrawingAlgorithm(algorithmEllipse);
+        disableButtons(this);
+    });
+
+
 }
 
 

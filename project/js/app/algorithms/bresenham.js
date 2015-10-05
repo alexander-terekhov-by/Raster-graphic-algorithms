@@ -8,6 +8,7 @@ function algorithmBresenham(p1, p2) {
     var y = p1.y;
     var step = 0;
     var stepFunction;
+    var error;
     $console.append("\nАлгоритм Брезенхема: Количество шагов = " + iterationNumber + "\n");
     $console.append("Точка 1 = (" + p1.x + ", " + p1.y + "), Точка 2 = (" + p2.x + ", " + p2.y + ")\n");
 

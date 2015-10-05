@@ -96,7 +96,7 @@ function addEventListenersToButtons() {
         disableButtons(this);
     });
     $("#Ellipse").click(function () {
-        templateLineDrawingAlgorithm(algorithmEllipse);
+        templateLineDrawingAlgorithm(algorithmEllipse, true);
         disableButtons(this);
     });
 
@@ -104,7 +104,7 @@ function addEventListenersToButtons() {
 }
 
 
-function templateLineDrawingAlgorithm(lineAlgorithm) {
+function templateLineDrawingAlgorithm(lineAlgorithm, disable) {
     $nextStep.prop('disabled', true);
     $nextStep.off('click');
     var pointsSet = [];
@@ -113,7 +113,9 @@ function templateLineDrawingAlgorithm(lineAlgorithm) {
     $pixelGrid.on("click", function (e) {
         if (pointsSet.length == 1) {
             pointsSet.push({x: getNumberOfCellByPixel(e.offsetX), y: getNumberOfCellByPixel(e.offsetY)});
-            drawIdealLine(pointsSet[0], pointsSet[1]);
+            if(!disable) {
+                drawIdealLine(pointsSet[0], pointsSet[1]);
+            }
             drawEndPoint(getNumberOfCellByPixel(e.offsetX), getNumberOfCellByPixel(e.offsetY));
             lineAlgorithm(pointsSet[0], pointsSet[1]);
             prepareForDrawingLine();

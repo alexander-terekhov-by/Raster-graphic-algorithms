@@ -1,39 +1,78 @@
 function algorithmEllipse(p1, p2) {
-    var a = Math.abs(p2.x - p1.x);
-    var b = Math.abs(p2.y - p1.y);
-    var x = 0, y = b, gap = 0, delta = 1 - 2 * a;
-    var step = 0;
-    $console.append("\nАлгоритм Брезенхема( Элипс ) \n");
-    $console.append("Центр = (" + p1.x + ", " + p1.y + "), a = " + a + " b = " + b + "\n");
 
-    $("#next-step").click(function () {
-        stepFunction();
-        if (y < 0) {
-            enableButtons();
-        }
-    });
+    drawBresenhamEllipse(p1, p2);
 
-    function stepFunction() {
-        step++;
-        //drawPixel(p1.x + x, p1.y + y);
-        drawPixel(p1.x + x, p1.y - y);
-        //drawPixel(p1.x - x, p1.y - y);
-        //drawPixel(p1.x - x, p1.y + y);
-        gap = 2 * (delta + y) - 1;
-        if ((delta < 0) && (gap < 0)) {
-            $console.append("Шаг №" + step +  " следующий шаг по горизонтали (дэльта < 0)\n");
-            delta += 2 * ++x + 1;
-            return;
+    function drawBresenhamEllipse(p1, p2) {
+        var x = p1.x;
+        var y = p1.y;
+        var a = Math.abs(p2.x - x);
+        var b = Math.abs(p2.y - y);
+        var col, row;
+        var d;
+        row = b;
+        col = 0;
+        d = 2 * a * a * ((row - 1) * (row)) + a * a + 2 * b * b * (1 - a * a);
+
+
+        $("#next-step").click(function () {
+            condition(firstCondition, firstPart, firstElse)
+        });
+
+
+        function firstCondition(){
+            return (a * a * (row) > b * b * (col));
         }
-        gap = 2 * (delta - x) - 1;
-        if ((delta > 0) && (gap > 0)) {
-            $console.append("Шаг №" + step +  " следующий шаг по вертикали (дэльта > 0)\n");
-            delta += 1 - 2 * --y;
-            return;
+
+        function firstElse(){
+            d = 2 * b * b * (col + 1) * col + 2 * a * a * (row * (row - 2) + 1) + (1 - 2 * a * a) * b * b;
+            $("#next-step").click(function () {
+                condition(secondCondition, secondPart, secondElse);
+            });
         }
-        $console.append("Шаг №" + step +  " следующий шаг по диагонали (дэльта = 0)\n");
-        x++;
-        y--;
-        delta -= 2 * ( y - x - 1);
+
+        function firstPart() {
+            drawPixel(col + x, row + y);
+            drawPixel(col + x, y - row);
+            drawPixel(x - col, row + y);
+            drawPixel(x - col, y - row);
+            if (d >= 0) {
+                row--;
+                d -= 4 * a * a * (row);
+            }
+            d += 2 * b * b * (3 + (col * 2));
+            col++;
+        }
+
+
+        function secondCondition (){
+            return (row + 1 != 0);
+        }
+
+
+        function secondPart(){
+            drawPixel(col + x, row + y);
+            drawPixel(col + x, y - row);
+            drawPixel(x - col, row + y);
+            drawPixel(x - col, y - row);
+            if (d <= 0) {
+                col++;
+                d += 4 * b * b * col;
+            }
+            row--;
+            d += 2 * a * a * (3 - (row * 2));
+        }
+
+     function secondElse(){
+         enableButtons();
+     }
+
+        function condition(condition, ifStatement, elseStatement) {
+            if (condition()) {
+                ifStatement();
+            }
+            else {
+                elseStatement()
+            }
+        }
     }
 }

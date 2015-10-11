@@ -15,9 +15,16 @@ function algorithmDDA(p1, p2) {
         }
     });
 
+    $("#execute-algorithm").click(function () {
+        for (var i = step; i <= iterationNumber; i++) {
+            ddaStep(x, y, dX, dY);
+        }
+        enableButtons();
+    });
+
     function ddaStep() {
         step++;
-        $console.append("иру Й" + step + ": x + dx = " + x + ", y + dy = " + y + "\n");
+        $console.append("иру Й" + step + ": x + dx = " + x + ", y + dy = " + y + " ђюїър: " + "(" + Math.round(x) + ", " + Math.round(y) + ")" + "\n");
         drawPixel(Math.round(x), Math.round(y));
         x += dX;
         y += dY;

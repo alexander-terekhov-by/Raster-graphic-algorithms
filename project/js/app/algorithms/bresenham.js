@@ -32,6 +32,14 @@ function algorithmBresenham(p1, p2) {
     });
 
 
+    $("#execute-algorithm").click(function () {
+        for (var i = step; i <= iterationNumber; i++) {
+            stepFunction();
+        }
+        enableButtons();
+    });
+
+
     function bresenhamStepWhenAngleMore5() {
         step++;
         $console.append("Øàã ¹" + step + ": x = " + x + ", y " + y + ", error = " + error + "\n");
@@ -41,6 +49,7 @@ function algorithmBresenham(p1, p2) {
         if (error > 0) {
             error -= 2 * lengthY;
             x += dx;
+            $console.append("Îøèáêà > 0 -> x = ++ \n");
         }
     }
 
@@ -53,6 +62,8 @@ function algorithmBresenham(p1, p2) {
         if (error > 0) {
             error -= 2 * lengthX;
             y += dy;
+            $console.append("Îøèáêà > 0 -> y = ++ \n");
+
         }
     }
 }

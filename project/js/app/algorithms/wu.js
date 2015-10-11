@@ -36,6 +36,15 @@ function algorithmWu(p1, p2) {
         }
     });
 
+
+    $("#execute-algorithm").click(function () {
+        for (var i = step; i <= iterationNumber; i++) {
+            stepFunction();
+        }
+        enableButtons();
+    });
+
+
     function wuStepWhenAngleMore45() {
         step++;
         $console.append("иру Й" + step + ": x = " + x + ", y " + y + ", error = " + error + "\n");
@@ -72,6 +81,4 @@ function algorithmWu(p1, p2) {
             y += dy;
         }
     }
-
-
 }

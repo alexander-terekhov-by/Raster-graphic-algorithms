@@ -24,10 +24,10 @@ function drawIdealLine(p1, p2) {
 }
 
 function fillCell(column, row, color) {
-    var x = column * pixelSize + 2;
-    var y = row * pixelSize + 2;
+    var x = column * pixelSize;
+    var y = row * pixelSize;
     context.fillStyle = color;
-    context.fillRect(x, y, pixelSize - 2, pixelSize - 2);
+    context.fillRect(x, y, pixelSize, pixelSize);
 }
 
 
@@ -70,8 +70,22 @@ function disableButtons(currentButton) {
     $(currentButton).attr("disabled", false);
 }
 
+
+function enableControlButtons() {
+    $('.control-button').each(function () {
+        $(this).prop('disabled', false);
+        $(this).off('click');
+    });
+}
+
+function disableControlButtons() {
+    $('.control-button').each(function () {
+        $(this).prop('disabled', true);
+    });
+}
+
 function enableButtons() {
-    $nextStep.prop('disabled', true);
+    disableControlButtons();
     $(".algorithm-btn").each(function (i, button) {
         $(button).attr("disabled", false);
     });
@@ -96,26 +110,21 @@ function addEventListenersToButtons() {
         disableButtons(this);
     });
     $("#Ellipse").click(function () {
-        templateLineDrawingAlgorithm(algorithmEllipse, true);
+        templateLineDrawingAlgorithm(algorithmEllipse);
         disableButtons(this);
     });
 
 
 }
 
-
-function templateLineDrawingAlgorithm(lineAlgorithm, disable) {
-    $nextStep.prop('disabled', true);
-    $nextStep.off('click');
+function templateLineDrawingAlgorithm(lineAlgorithm) {
+    enableControlButtons();
     var pointsSet = [];
     var $pixelGrid = $("#pixel-grid");
 
     $pixelGrid.on("click", function (e) {
         if (pointsSet.length == 1) {
             pointsSet.push({x: getNumberOfCellByPixel(e.offsetX), y: getNumberOfCellByPixel(e.offsetY)});
-            if(!disable) {
-                drawIdealLine(pointsSet[0], pointsSet[1]);
-            }
             drawEndPoint(getNumberOfCellByPixel(e.offsetX), getNumberOfCellByPixel(e.offsetY));
             lineAlgorithm(pointsSet[0], pointsSet[1]);
             prepareForDrawingLine();
@@ -128,7 +137,6 @@ function templateLineDrawingAlgorithm(lineAlgorithm, disable) {
 
 
     function prepareForDrawingLine() {
-        $nextStep.prop('disabled', false);
         $pixelGrid.off("click");
     }
 }

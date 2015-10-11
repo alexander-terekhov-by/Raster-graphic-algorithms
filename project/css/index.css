@@ -48,5 +48,13 @@
     width: 200px;
 }
 
+#pixel-grid{
+    border: black 1px solid;
+}
+
+.control-button{
+    text-align: center;
+}
+
 
 
